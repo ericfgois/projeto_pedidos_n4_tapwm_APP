@@ -1,91 +1,131 @@
-# Doceria Hub Flow — App Mobile (React Native + Expo)
+# 📱 Doceria Hub Flow — App Mobile
 
-> Repositório oficial do Aplicativo Mobile para a entrega final da disciplina N4 / TAPWM.
-> **Nome do repositório:** `projeto_pedidos_n4_tapwm_APP`
-
----
-
-## 👥 Integrantes do Grupo e Divisão de Responsabilidades
-
-| Integrante | Repositório GitHub / Serviço | Escopo Técnico |
-| :--- | :--- | :--- |
-| **Eric Fracassi de Gois** | [`projeto_pedidos_n4_tapwm_APP`](https://github.com/ericfgois/projeto_pedidos_n4_tapwm_APP) | Aplicativo Mobile em React Native + Expo com cadastro, login, catálogo, carrinho e compilação APK. |
-| **Gabriel Xavier de Almeida** | [`projeto_pedidos_n4_tapwm_API`](https://github.com/GabrielXAlmeida/projeto_pedidos_n4_tapwm_API) | API Node.js + Express, autenticação JWT, controle de perfis (admin/cliente) e pedidos. |
-| **Marcelo Enrique Korin** | [`projeto_pedidos_n4_tapwm_WEB`](https://github.com/MarceloKorin/projeto_pedidos_n4_tapwm_WEB) | Painel Web Administrativo em React + Vite para gestão de pedidos e catálogo. |
-| **David Lima Alves** | `database/` no Supabase | Modelagem relacional, scripts DDL/DML (schema e seed) e conexão PostgreSQL. |
+> Projeto N4 — Turma TAPWM | Fatec  
+> Sistema de pedidos para doceria, com catálogo de produtos e acompanhamento de pedidos em tempo real.
 
 ---
 
-## 📱 Sobre o Aplicativo Mobile
+## 👥 Equipe
 
-O aplicativo mobile permite aos clientes da doceria:
-1. **Cadastro e Autenticação:** Criação de nova conta de cliente e login com token JWT persistido localmente via `AsyncStorage`.
-2. **Catálogo Interativo:** Visualização de todos os produtos cadastrados com filtragem por categoria, fotos, descrições e valores unitários formatados em moeda (R$).
-3. **Carrinho de Compras:** Adição e remoção de itens dinamicamente, cálculo automático do subtotal e campo para inclusão de observações personalizadas para a cozinha.
-4. **Meus Pedidos:** Histórico completo de pedidos realizados com acompanhamento de status em tempo real (`Pendente`, `Em Preparo`, `Concluído`).
-
----
-
-## 🔑 Credenciais de Teste
-
-Após rodar o script `02_seed.sql` no banco de dados Supabase:
-
-- **Perfil Cliente (App Mobile):**
-  - **E-mail:** `cliente@doceria.com`
-  - **Senha:** `cliente123`
+| Nome | Função | GitHub |
+|------|--------|--------|
+| Eric Gois | 📱 App Mobile (React Native / Expo) | [@ericfgois](https://github.com/ericfgois) |
+| Gabriel Almeida | ⚙️ API REST (Node.js / Express) | [@GabrielXAlmeida](https://github.com/GabrielXAlmeida) |
+| Marcelo Korin | 🌐 Web Admin (React / Vite) | [@MarceloKorin](https://github.com/MarceloKorin) |
+| David | 🗄️ Banco de Dados (MySQL) | — |
 
 ---
 
-## ⚙️ Instalação e Execução Local
+## 🔗 Repositórios do Projeto
 
-### Pré-requisitos
-- [Node.js](https://nodejs.org/) (versão 18, 20 ou superior)
-- Celular físico com o app **Expo Go** (Android/iOS) ou Emulador Android Studio
-
-### Passo a passo
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/ericfgois/projeto_pedidos_n4_tapwm_APP.git
-   cd projeto_pedidos_n4_tapwm_APP
-   ```
-
-2. Instale as dependências:
-   ```bash
-   npm install
-   ```
-
-3. Configure o endereço da API:
-   - Abra o arquivo `src/api/api.js` e verifique a variável `baseURL`.
-   - Por padrão, está configurada para aceitar a variável de ambiente `EXPO_PUBLIC_API_URL` ou fallback para o IP local da sua máquina na rede local (ex: `http://192.168.0.69:3000`).
-   - Se for testar no celular físico via Expo Go, certifique-se de que celular e computador estejam na mesma rede Wi-Fi e que o IP configurado seja o IPv4 da sua máquina.
-
-4. Inicie o servidor Metro / Expo:
-   ```bash
-   npm start
-   # ou
-   npx expo start
-   ```
-
-5. Leia o QR Code no terminal através do aplicativo Expo Go no seu smartphone ou pressione `a` para rodar no emulador Android.
+| Parte | Repositório |
+|-------|-------------|
+| 📱 Mobile (este) | [projeto_pedidos_n4_tapwm_APP](https://github.com/ericfgois/projeto_pedidos_n4_tapwm_APP) |
+| ⚙️ API | [projeto_pedidos_n4_tapwm_API](https://github.com/GabrielXAlmeida/projeto_pedidos_n4_tapwm_API) |
+| 🌐 Web Admin | [projeto_pedidos_n4_tapwm_WEB](https://github.com/MarceloKorin/projeto_pedidos_n4_tapwm_WEB) |
 
 ---
 
-## 📦 Como Gerar o Arquivo APK (Build Android)
+## 🛠️ Tecnologias
 
-O projeto já contém o arquivo `eas.json` devidamente configurado com o perfil `preview` para gerar instaladores `.apk` diretamente pelo EAS (Expo Application Services):
+- [React Native](https://reactnative.dev/) 0.76
+- [Expo](https://expo.dev/) ~52
+- [Expo Router](https://expo.github.io/router/) (navegação)
+- [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) (persistência local)
+- [React Native Screens](https://github.com/software-mansion/react-native-screens)
+- [React Native Safe Area Context](https://github.com/th3rdwave/react-native-safe-area-context)
 
+---
+
+## ✅ Pré-requisitos
+
+- [Node.js](https://nodejs.org/) 18+
+- [Expo Go](https://expo.dev/client) (app no celular) **ou** emulador Android/iOS
+- API rodando localmente (veja o repo da API)
+
+---
+
+## 🚀 Como Executar
+
+### 1. Clone o repositório
 ```bash
-# 1. Instalar o EAS CLI globalmente
-npm install -g eas-cli
-
-# 2. Fazer login na conta Expo
-eas login
-
-# 3. Configurar o build
-eas build:configure
-
-# 4. Iniciar a compilação do APK na nuvem
-eas build --platform android --profile preview
+git clone https://github.com/ericfgois/projeto_pedidos_n4_tapwm_APP.git
+cd projeto_pedidos_n4_tapwm_APP
 ```
 
-Ao término, o Expo fornecerá um link direto para download do `.apk` pronto para instalação em qualquer aparelho Android.
+### 2. Instale as dependências
+```bash
+npm install
+```
+
+### 3. Configure a URL da API
+
+Crie um arquivo `.env` na raiz do projeto:
+```env
+EXPO_PUBLIC_API_URL=http://<IP_DA_MAQUINA_COM_API>:3000
+```
+> **Dica:** Se estiver rodando no emulador Android, use `http://10.0.2.2:3000`. No dispositivo físico, use o IP local da máquina (ex: `192.168.0.10:3000`).
+
+### 4. Inicie o app
+```bash
+npx expo start
+```
+
+Escaneie o QR code com o **Expo Go** ou pressione `a` para abrir no emulador Android.
+
+---
+
+## 📲 Instalar o APK (Android)
+
+Baixe e instale o APK compilado diretamente no dispositivo Android:
+
+1. Transfira o arquivo `DoceriaHubFlow.apk` para o celular
+2. Habilite **"Fontes desconhecidas"** nas configurações do Android
+3. Abra o arquivo e instale
+
+---
+
+## 🔐 Credenciais de Teste
+
+| Perfil | E-mail | Senha |
+|--------|--------|-------|
+| Cliente (Mobile) | `cliente@doceria.com` | `cliente123` |
+| Admin (Web) | `admin@doceria.com` | `admin123` |
+
+---
+
+## 📋 Funcionalidades
+
+- [x] Cadastro e login de clientes
+- [x] Catálogo de produtos com preço e imagem
+- [x] Realizar pedidos
+- [x] Acompanhar status dos pedidos em tempo real
+- [x] Histórico de pedidos do usuário
+- [x] Logout
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+projeto_pedidos_n4_tapwm_APP/
+├── src/
+│   ├── api/          # Configuração da API (axios)
+│   ├── context/      # Contextos React (Auth)
+│   └── screens/      # Telas do app
+│       ├── LoginScreen.js
+│       ├── RegisterScreen.js
+│       ├── CatalogoScreen.js
+│       ├── MeusPedidosScreen.js
+│       └── ...
+├── assets/           # Imagens e ícones
+├── app.json          # Configuração do Expo
+├── eas.json          # Configuração de build
+└── package.json
+```
+
+---
+
+## 📄 Licença
+
+Projeto acadêmico — Fatec · N4 · TAPWM · 2026
