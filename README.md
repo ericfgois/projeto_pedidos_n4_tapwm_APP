@@ -9,10 +9,10 @@
 
 | Integrante | Repositório GitHub / Serviço | Escopo Técnico |
 | :--- | :--- | :--- |
-| **David Lima Alves** | `repo-api-doceria` | API Node.js + Express, autenticação JWT, controle de perfis (admin/cliente) e pedidos. |
-| **Eric Fracassi de Gois** | `repo-web-admin` | Painel Web Administrativo em React + Vite para gestão de pedidos e catálogo. |
-| **Gabriel Xavier de Almeida** | `projeto_pedidos_n4_tapwm_APP` | Aplicativo Mobile em React Native + Expo com cadastro, login, catálogo, carrinho e compilação APK. |
-| **Marcelo Enrique Korin** | `database/` no Supabase | Modelagem relacional, scripts DDL/DML (schema e seed) e conexão PostgreSQL. |
+| **Eric Fracassi de Gois** | `projeto_pedidos_n4_tapwm_APP` | Aplicativo Mobile em React Native + Expo com cadastro, login, catálogo, carrinho e compilação APK. |
+| **Gabriel Xavier de Almeida** | `repo-api-doceria` | API Node.js + Express, autenticação JWT, controle de perfis (admin/cliente) e pedidos. |
+| **Marcelo Enrique Korin** | `repo-web-admin` | Painel Web Administrativo em React + Vite para gestão de pedidos e catálogo. |
+| **David Lima Alves** | `database/` no Supabase | Modelagem relacional, scripts DDL/DML (schema e seed) e conexão PostgreSQL. |
 
 ---
 
