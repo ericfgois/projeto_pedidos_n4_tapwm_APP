@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "Doceria Hub Flow",
+    "slug": "doceria-hub-flow",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "com.doceriahubflow.app"
+    }
+  }
+}
