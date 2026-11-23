@@ -9,9 +9,9 @@
 
 | Integrante | Repositório GitHub / Serviço | Escopo Técnico |
 | :--- | :--- | :--- |
-| **Eric Fracassi de Gois** | `projeto_pedidos_n4_tapwm_APP` | Aplicativo Mobile em React Native + Expo com cadastro, login, catálogo, carrinho e compilação APK. |
-| **Gabriel Xavier de Almeida** | `repo-api-doceria` | API Node.js + Express, autenticação JWT, controle de perfis (admin/cliente) e pedidos. |
-| **Marcelo Enrique Korin** | `repo-web-admin` | Painel Web Administrativo em React + Vite para gestão de pedidos e catálogo. |
+| **Eric Fracassi de Gois** | [`projeto_pedidos_n4_tapwm_APP`](https://github.com/ericfgois/projeto_pedidos_n4_tapwm_APP) | Aplicativo Mobile em React Native + Expo com cadastro, login, catálogo, carrinho e compilação APK. |
+| **Gabriel Xavier de Almeida** | [`projeto_pedidos_n4_tapwm_API`](https://github.com/GabrielXAlmeida/projeto_pedidos_n4_tapwm_API) | API Node.js + Express, autenticação JWT, controle de perfis (admin/cliente) e pedidos. |
+| **Marcelo Enrique Korin** | [`projeto_pedidos_n4_tapwm_WEB`](https://github.com/MarceloKorin/projeto_pedidos_n4_tapwm_WEB) | Painel Web Administrativo em React + Vite para gestão de pedidos e catálogo. |
 | **David Lima Alves** | `database/` no Supabase | Modelagem relacional, scripts DDL/DML (schema e seed) e conexão PostgreSQL. |
 
 ---
