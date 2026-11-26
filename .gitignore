@@ -1,9 +1,33 @@
-node_modules
-.expo
-dist
+# Dependências
+node_modules/
+
+# Expo e builds
+.expo/
+dist/
+web-build/
+.metro-health-check*
+
+# Variáveis de ambiente (mantém .env.example visível no Git)
+.env
+.env.local
+.env.*.local
+
+# Chaves de assinatura e binários nativos
 *.jks
 *.p8
 *.p12
 *.key
 *.mobileprovision
 *.orig.*
+*.apk
+*.aab
+
+# Logs e cache
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.tsbuildinfo
+
+# Sistema operacional
+.DS_Store
+Thumbs.db

@@ -13,13 +13,25 @@ import { api } from '../api/api';
 export default function MeusPedidosScreen({ navigation }) {
   const [pedidos, setPedidos] = useState([]);
   const [carregando, setCarregando] = useState(true);
+  const [atualizando, setAtualizando] = useState(false);
+
+  const buscarPedidos = async (isRefresh = false) => {
+    if (isRefresh) setAtualizando(true);
+    else setCarregando(true);
+
+    try {
+      const res = await api.get('/pedidos/meus');
+      setPedidos(res.data);
+    } catch {
+      // mantém lista atual em caso de falha momentânea
+    } finally {
+      setCarregando(false);
+      setAtualizando(false);
+    }
+  };
 
   useEffect(() => {
-    api
-      .get('/pedidos/meus')
-      .then((res) => setPedidos(res.data))
-      .catch(() => {})
-      .finally(() => setCarregando(false));
+    buscarPedidos();
   }, []);
 
   return (
@@ -39,6 +51,8 @@ export default function MeusPedidosScreen({ navigation }) {
           data={pedidos}
           keyExtractor={(item) => item.id.toString()}
           contentContainerStyle={styles.list}
+          refreshing={atualizando}
+          onRefresh={() => buscarPedidos(true)}
           ListEmptyComponent={
             <Text style={styles.empty}>Você ainda não realizou nenhum pedido.</Text>
           }
@@ -52,7 +66,7 @@ export default function MeusPedidosScreen({ navigation }) {
               </View>
 
               <View style={styles.itemsBox}>
-                {item.itens.map((it, i) => (
+                {(item.itens || []).map((it, i) => (
                   <Text key={i} style={styles.itemLine}>
                     {it.quantidade}x {it.produto_nome}
                   </Text>
