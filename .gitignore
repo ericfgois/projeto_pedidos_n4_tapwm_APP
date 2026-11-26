@@ -31,3 +31,5 @@ yarn-error.*
 # Sistema operacional
 .DS_Store
 Thumbs.db
+/android
+/ios

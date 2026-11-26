@@ -7,6 +7,11 @@
     "userInterfaceStyle": "light",
     "android": {
       "package": "com.doceriahubflow.app"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "97ac16b2-9927-4a6f-ba7c-a40225d8c21d"
+      }
     }
   }
 }
