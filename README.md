@@ -1,7 +1,7 @@
 # 📱 Doceria Hub Flow — App Mobile
 
 > Projeto N4 — Turma TAPWM | Fatec  
-> Sistema de pedidos para doceria, com catálogo de produtos e acompanhamento de pedidos em tempo real.
+> Sistema de pedidos para doceria, com catálogo de produtos, observações para a cozinha e acompanhamento de pedidos em tempo real.
 
 ---
 
@@ -12,7 +12,7 @@
 | Eric Gois | 📱 App Mobile (React Native / Expo) | [@ericfgois](https://github.com/ericfgois) |
 | Gabriel Almeida | ⚙️ API REST (Node.js / Express) | [@GabrielXAlmeida](https://github.com/GabrielXAlmeida) |
 | Marcelo Korin | 🌐 Web Admin (React / Vite) | [@MarceloKorin](https://github.com/MarceloKorin) |
-| David | 🗄️ Banco de Dados (MySQL) | — |
+| David Lima Alves | 🗄️ Banco de Dados (PostgreSQL / Supabase) | — |
 
 ---
 
@@ -28,24 +28,36 @@
 
 ## 🛠️ Tecnologias
 
-- [React Native](https://reactnative.dev/) 0.76
-- [Expo](https://expo.dev/) ~52
-- [Expo Router](https://expo.github.io/router/) (navegação)
-- [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) (persistência local)
+- [React Native](https://reactnative.dev/) & [Expo SDK](https://expo.dev/)
+- [React Navigation](https://reactnavigation.org/) (`@react-navigation/native` e `@react-navigation/native-stack`)
+- [Axios](https://axios-http.com/) (requisições HTTP com interceptor JWT e *timeout* de 60s)
+- [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) (persistência local de sessão)
 - [React Native Screens](https://github.com/software-mansion/react-native-screens)
 - [React Native Safe Area Context](https://github.com/th3rdwave/react-native-safe-area-context)
+
+---
+
+## 🔐 Credenciais de Teste (Importante)
+
+> ⚠️ **Atenção ao fazer login no app:** Os campos da tela de login vêm com um e-mail e senha antigos pré-escritos. **Apague o conteúdo dos dois campos** e preencha com as credenciais válidas abaixo (ou crie uma nova conta clicando em **"Cadastre-se"**):
+
+| Perfil | E-mail | Senha |
+|--------|--------|-------|
+| Cliente (Mobile) | `cliente3@doceria.com` | `cli123` |
+| Admin (Web) | `admin@doceria.com` | `admin123` |
+
+> **Nota sobre o servidor (Render):** A API já está hospedada online (`https://projeto-pedidos-n4-tapwm-api.onrender.com`). Como utiliza plano gratuito, caso esteja em hibernação, o primeiro login pode levar de **30 a 50 segundos** para responder.
 
 ---
 
 ## ✅ Pré-requisitos
 
 - [Node.js](https://nodejs.org/) 18+
-- [Expo Go](https://expo.dev/client) (app no celular) **ou** emulador Android/iOS
-- API rodando localmente (veja o repo da API)
+- [Expo Go](https://expo.dev/client) instalado no celular Android/iOS **ou** dispositivo Android para instalar o `.apk`
 
 ---
 
-## 🚀 Como Executar
+## 🚀 Como Executar (Desenvolvimento)
 
 ### 1. Clone o repositório
 ```bash
@@ -58,49 +70,41 @@ cd projeto_pedidos_n4_tapwm_APP
 npm install
 ```
 
-### 3. Configure a URL da API
+### 3. Configure a URL da API (Opcional)
 
-Crie um arquivo `.env` na raiz do projeto:
+O aplicativo já aponta automaticamente para a API online no Render. Caso queira apontar para outra URL, crie um arquivo `.env` na raiz do projeto (baseado no `.env.example`):
 ```env
-EXPO_PUBLIC_API_URL=http://<IP_DA_MAQUINA_COM_API>:3000
+EXPO_PUBLIC_API_URL=https://projeto-pedidos-n4-tapwm-api.onrender.com
 ```
-> **Dica:** Se estiver rodando no emulador Android, use `http://10.0.2.2:3000`. No dispositivo físico, use o IP local da máquina (ex: `192.168.0.10:3000`).
 
 ### 4. Inicie o app
 ```bash
-npx expo start
+npx expo start --clear
 ```
+*(Em redes restritas ou GitHub Codespaces, utilize `npx expo start --tunnel --clear`).*
 
-Escaneie o QR code com o **Expo Go** ou pressione `a` para abrir no emulador Android.
+Escaneie o QR code com o **Expo Go** no celular.
 
 ---
 
 ## 📲 Instalar o APK (Android)
 
-Baixe e instale o APK compilado diretamente no dispositivo Android:
+Para testar diretamente no celular sem ambiente de desenvolvimento:
 
-1. Transfira o arquivo `DoceriaHubFlow.apk` para o celular
-2. Habilite **"Fontes desconhecidas"** nas configurações do Android
-3. Abra o arquivo e instale
-
----
-
-## 🔐 Credenciais de Teste
-
-| Perfil | E-mail | Senha |
-|--------|--------|-------|
-| Cliente (Mobile) | `cliente@doceria.com` | `cliente123` |
-| Admin (Web) | `admin@doceria.com` | `admin123` |
+1. Transfira o arquivo `DoceriaHubFlow.apk` (presente no pacote de entrega) para o celular Android
+2. Habilite **"Instalar apps desconhecidos"** nas configurações do Android quando solicitado
+3. Abra o arquivo e conclua a instalação
+4. Na tela de login, **apague os dados pré-preenchidos** e entre com `cliente3@doceria.com` / `cli123`
 
 ---
 
 ## 📋 Funcionalidades
 
-- [x] Cadastro e login de clientes
-- [x] Catálogo de produtos com preço e imagem
-- [x] Realizar pedidos
-- [x] Acompanhar status dos pedidos em tempo real
-- [x] Histórico de pedidos do usuário
+- [x] Cadastro e login de clientes com persistência automática de sessão
+- [x] Catálogo de produtos organizado por categoria, descrição e preço
+- [x] Carrinho dinâmico com seletor de quantidades e cálculo automático do total
+- [x] Campo de observação opcional para a cozinha ao finalizar o pedido
+- [x] Histórico e acompanhamento de status dos pedidos (*pull-to-refresh* puxando a tela para baixo)
 - [x] Logout
 
 ---
@@ -110,17 +114,19 @@ Baixe e instale o APK compilado diretamente no dispositivo Android:
 ```
 projeto_pedidos_n4_tapwm_APP/
 ├── src/
-│   ├── api/          # Configuração da API (axios)
-│   ├── context/      # Contextos React (Auth)
-│   └── screens/      # Telas do app
-│       ├── LoginScreen.js
-│       ├── RegisterScreen.js
-│       ├── CatalogoScreen.js
-│       ├── MeusPedidosScreen.js
-│       └── ...
-├── assets/           # Imagens e ícones
-├── app.json          # Configuração do Expo
-├── eas.json          # Configuração de build
+│   ├── api/
+│   │   └── api.js              # Configuração do Axios, URL da API e interceptor JWT
+│   ├── context/
+│   │   └── AuthContext.js      # Gerenciamento e persistência de autenticação
+│   └── screens/
+│       ├── LoginScreen.js      # Tela de login
+│       ├── RegisterScreen.js   # Tela de cadastro de cliente
+│       ├── CatalogoScreen.js   # Cardápio, carrinho e envio de pedidos
+│       └── MeusPedidosScreen.js # Histórico e status dos pedidos
+├── App.js                      # Configuração de rotas (React Navigation)
+├── app.json                    # Configuração do Expo
+├── eas.json                    # Perfis de build (APK)
+├── .env.example                # Exemplo de variável de ambiente
 └── package.json
 ```
 
